@@ -44,5 +44,5 @@ body {
 
 .weather-box {
   padding-top: 1rem;
-  list-style: square;
+  list-style: none;
 }
