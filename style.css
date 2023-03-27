@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(153, 153, 245);
+}
+
+.container {
+  background: white;
+  border: 1px solid black;
+  padding: 28px 144px;
+  overflow: hidden;
+  border-radius: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 16rem;
+}
+
+#find-me {
+  border: none;
+}
+
+#geolocation {
+  font-size: 32px;
+  background: white;
+}
+
+.rain {
+  padding-top: 1rem;
+  list-style: none;
+}
+
+.weather-box {
+  padding-top: 1rem;
+  list-style: square;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¿Lloverá?</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <fieldset class="container">
+      <label class="search-box">
+        <button id="find-me">
+          <i id="geolocation" class="fa-solid fa-location-dot"></i>
+        </button>
+
+        <form id="search-form">
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Indica una ubicación"
+          />
+        </form>
+        <button id="search" class="fa-solid fa-magnifying-glass"></button>
+      </label>
+
+      <ul class="weather-box">
+        <li class="main">¿Lloverá en las próximas 8 horas?</li>
+        <li class="clouds">Clouds:</li>
+        <li class="humidity">Humidity:</li>
+        <li class="pop">Pop:</li>
+        <li class="pressure">Pressure:</li>
+        <li class="temp">Temp:</li>
+        <li class="uvi">Uvi:</li>
+        <li class="visibility">Visibility:</li>
+        <li class="wind_deg">Wind deg:</li>
+        <li class="wind_gust">Wind Gust:</li>
+        <li class="wind_speed">Wind Speed:</li>
+      </ul>
+    </fieldset>
+    <script src="https://kit.fontawesome.com/7c8801c017.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
