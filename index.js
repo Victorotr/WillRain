@@ -4,6 +4,7 @@
 const formElement = document.forms.search;
 const buttonGeolocation = document.querySelector("#geolocation-button");
 const buttonSearch = document.querySelector("#search-button");
+const cityElement = document.querySelector(".city");
 const descriptionElement = document.querySelector(".description");
 const temperatureElement = document.querySelector(".temperature");
 const humidityElement = document.querySelector(".humidity");
@@ -33,7 +34,11 @@ function showPanel(panel) {
 
 //  Enter
 
-formElement.addEventListener("submit", (event) => event.preventDefault());
+formElement.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const newSearchInput = formElement.elements.searchInput;
+  newSearchInput.value = "";
+});
 
 // Button Geolocation
 
@@ -66,12 +71,14 @@ buttonGeolocation.addEventListener("click", () => {
         rainElement.textContent += " No";
       }
 
+      const citySearch = dataWeather.city.name;
       const descrip = dataWeather.list[0].weather[0].description;
       const temp = dataWeather.list[0].main.temp;
       const conversionKelvin = 273.15;
       const humidity = dataWeather.list[0].main.humidity;
       const wind = dataWeather.list[0].wind.speed;
 
+      cityElement.textContent += citySearch;
       descriptionElement.textContent += descrip;
       temperatureElement.textContent += ` ${parseInt(
         temp - conversionKelvin
@@ -81,6 +88,7 @@ buttonGeolocation.addEventListener("click", () => {
     }
     weather();
 
+    cityElement.innerHTML = "";
     descriptionElement.innerHTML = "";
     temperatureElement.innerHTML = "Temperature:";
     humidityElement.innerHTML = "Humidity:";
@@ -119,12 +127,14 @@ buttonSearch.addEventListener("click", () => {
       rainElement.textContent += " No";
     }
 
+    const citySearch = dataWeather.city.name;
     const descrip = dataWeather.list[0].weather[0].description;
     const temp = dataWeather.list[0].main.temp;
     const conversionKelvin = 273.15;
     const humidity = dataWeather.list[0].main.humidity;
     const wind = dataWeather.list[0].wind.speed;
 
+    cityElement.textContent += citySearch;
     descriptionElement.textContent += descrip;
     temperatureElement.textContent += ` ${parseInt(
       temp - conversionKelvin
@@ -134,6 +144,7 @@ buttonSearch.addEventListener("click", () => {
   }
   weather();
 
+  cityElement.innerHTML = "";
   descriptionElement.innerHTML = "";
   temperatureElement.innerHTML = "Temperature:";
   humidityElement.innerHTML = "Humidity:";
