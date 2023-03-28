@@ -9,10 +9,27 @@ const temperatureElement = document.querySelector(".temperature");
 const humidityElement = document.querySelector(".humidity");
 const windElement = document.querySelector(".wind-speed");
 const rainElement = document.querySelector(".rain");
+const locationPanel = document.querySelector(".location");
+const mainPanel = document.querySelector(".main");
+const errorPanel = document.querySelector(".error");
 
 // ApiKey
 
 const APIKey = "ff1890d6b5c6ab10a7a079f29d86c7eb";
+
+// Esconder paneles
+
+function hideAllPanels() {
+  location.classList.add("hide");
+  main.classList.add("hide");
+  error.classList.add("hide");
+}
+
+// Mostrar panel indicado
+
+function showPanel(panel) {
+  panel.classList.remove("hide");
+}
 
 // Button Geolocation
 

@@ -16,15 +16,15 @@
       <h1>Weather app</h1>
     </header>
 
-    <main class="container">
-      <fieldset class="location">
-        <label class="geolocation-box">
-          <p>Press for geolocation:</p>
-          <button id="geolocation-button">
-            <i id="geolocation-icon" class="fa-solid fa-location-dot"></i>
-          </button>
-        </label>
+    <section class="panel location hide">
+      <h2>Press for geolocation:</h2>
+      <button id="geolocation-button">
+        <i id="geolocation-icon" class="fa-solid fa-location-dot"></i>
+      </button>
+    </section>
 
+    <main class="container">
+      <section class="panel main positive negative hide">
         <label class="search-box">
           <input
             id="search-input"
@@ -35,18 +35,23 @@
             id="search-button"
             class="fa-solid fa-magnifying-glass"
           ></button>
+          <button id="search">
+            <p>x</p>
+          </button>
         </label>
-      </fieldset>
 
-      <ul class="weather-box">
-        <li class="description"></li>
-        <li class="temperature">Temperature:</li>
-        <li class="humidity">Humidity:</li>
-        <li class="wind-speed">Wind Speed:</li>
-        <li class="rain">Will rain?</li>
-      </ul>
+        <ul class="weather-box">
+          <li class="description"></li>
+          <li class="temperature">Temperature:</li>
+          <li class="humidity">Humidity:</li>
+          <li class="wind-speed">Wind Speed:</li>
+          <li class="rain">Will rain?</li>
+        </ul>
+      </section>
+      <section class="panel error hide">
+        <p>No se ha detectado la ubicación</p>
+      </section>
     </main>
-
     <script src="https://kit.fontawesome.com/7c8801c017.js"></script>
     <script src="./index.js"></script>
   </body>
