@@ -1,7 +1,7 @@
 "use strict";
 
 // Selectores
-
+const formElement = document.forms.search;
 const buttonGeolocation = document.querySelector("#geolocation-button");
 const buttonSearch = document.querySelector("#search-button");
 const descriptionElement = document.querySelector(".description");
@@ -30,6 +30,10 @@ function hideAllPanels() {
 function showPanel(panel) {
   panel.classList.remove("hide");
 }
+
+//  Enter
+
+formElement.addEventListener("submit", (event) => event.preventDefault());
 
 // Button Geolocation
 

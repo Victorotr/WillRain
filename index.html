@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <header>
       <img src="img/icons8-lluvia.gif" alt="¿Lloverá?" />
@@ -25,20 +26,23 @@
 
     <main class="container">
       <section class="panel main positive negative hide">
-        <label class="search-box">
-          <input
-            id="search-input"
-            type="text"
-            placeholder="Enter your location"
-          />
-          <button
-            id="search-button"
-            class="fa-solid fa-magnifying-glass"
-          ></button>
-          <button id="search">
-            <p>x</p>
-          </button>
-        </label>
+        <form name="search">
+          <label class="search-box">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Enter your location"
+            />
+
+            <button
+              id="search-button"
+              class="fa-solid fa-magnifying-glass"
+            ></button>
+            <button id="search">
+              <p>x</p>
+            </button>
+          </label>
+        </form>
 
         <ul class="weather-box">
           <li class="description"></li>
@@ -48,10 +52,12 @@
           <li class="rain">Will rain?</li>
         </ul>
       </section>
+
       <section class="panel error hide">
         <p>No se ha detectado la ubicación</p>
       </section>
     </main>
+
     <script src="https://kit.fontawesome.com/7c8801c017.js"></script>
     <script src="./index.js"></script>
   </body>
