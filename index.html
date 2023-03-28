@@ -12,30 +12,41 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <fieldset class="container">
-      <label class="search-box">
-        <button id="find-me">
-          <i id="geolocation" class="fa-solid fa-location-dot"></i>
-        </button>
+    <header>
+      <h1>Weather app</h1>
+    </header>
 
-        <form id="search-form">
+    <main class="container">
+      <fieldset class="location">
+        <label class="geolocation-box">
+          <p>Press for geolocation:</p>
+          <button id="geolocation-button">
+            <i id="geolocation-icon" class="fa-solid fa-location-dot"></i>
+          </button>
+        </label>
+
+        <label class="search-box">
           <input
             id="search-input"
             type="text"
-            placeholder="Indica una ubicación"
+            placeholder="Enter your location"
           />
-        </form>
-        <button id="search" class="fa-solid fa-magnifying-glass"></button>
-      </label>
+          <button
+            id="search-button"
+            class="fa-solid fa-magnifying-glass"
+          ></button>
+        </label>
+      </fieldset>
 
       <ul class="weather-box">
         <li class="description"></li>
-        <li class="temp">Temperature:</li>
+        <li class="temperature">Temperature:</li>
         <li class="humidity">Humidity:</li>
-        <li class="wind_speed">Wind Speed:</li>
-        <li class="main">¿Lloverá en las próximas 8 horas?</li>
+        <li class="wind-speed">Wind Speed:</li>
+        <li class="rain">Will rain?</li>
       </ul>
-    </fieldset>
+    </main>
+
     <script src="https://kit.fontawesome.com/7c8801c017.js"></script>
     <script src="./index.js"></script>
   </body>
