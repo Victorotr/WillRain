@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -26,27 +26,19 @@
 
     <main class="container">
       <section class="panel main positive negative hide">
-        <form name="search">
-          <label class="search-box">
-            <input
-              name="searchInput"
-              id="search-input"
-              type="text"
-              placeholder="Enter your location"
-            />
-
-            <button
-              id="search-button"
-              class="fa-solid fa-magnifying-glass"
-            ></button>
-            <button id="search">
-              <p>x</p>
-            </button>
-          </label>
+        <form name="search" class="search-box">
+          <input id="search-input" type="text" placeholder="Enter your location" />
+          <button class="searchButton" id="search-button">
+            <i class="fas fa-search"></i>
+          </button>
+          <!-- El div se tiene que cambiar -->
+          <div class="cancel-icon">  
+            <i class="fas fa-times"></i>
+          </div>
         </form>
+        
 
         <ul class="weather-box">
-          <li class="city"></li>
           <li class="description"></li>
           <li class="temperature">Temperature:</li>
           <li class="humidity">Humidity:</li>
@@ -61,6 +53,6 @@
     </main>
 
     <script src="https://kit.fontawesome.com/7c8801c017.js"></script>
-    <script src="./index.js"></script>
+     <script src="./index.js"></script> 
   </body>
 </html>
