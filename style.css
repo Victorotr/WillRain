@@ -1,21 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* .hide {
-  display: none;
-} */
+html {
+  font-family: "Righteous", Arial, sans-serif;
+}
 
 body {
   height: 100vh;
 }
 
 header {
-  display: flex;
-  justify-content: center;
-  background-color: gray;
+  text-align: center;
+  position: absolute;
+  width: 100vw;
 }
 
 .location,
@@ -28,48 +30,73 @@ header {
 }
 
 .location {
-  gap: 3rem;
-  font-size: 25px;
+  background-image: url(img/bola-del-mundo.png);
+  background-size: cover;
+  font-size: 20px;
   background-color: gray;
+  border: solid black 1rem;
 }
 
-#geolocation-button {
-  border: none;
-  background-color: white;
-  font-size: 3rem;
-  background-color: gray;
+h2 {
+  margin-top: 6rem;
+  color: rgb(0, 0, 0);
 }
+
+figure {
+  display: flex;
+  justify-content: center;
+}
+
 img {
-  margin-top: 4rem;
+  margin-top: 3rem;
   width: 5rem;
   border: solid black;
   border-radius: 25%;
 }
-.main {
-  background-color: aquamarine;
+
+ul {
+  font-size: 1.4rem;
+  list-style-type: none;
+  padding-top: 0.5rem;
 }
+li {
+  border: solid black 1.5px;
+  padding: 1rem;
+}
+
+.main.positive {
+  background-image: url(img/rainyday.gif);
+  background-size: cover;
+  border: solid white 0.5rem;
+}
+
 .error {
-  background: rgba(233, 42, 42, 0.842);
+  background-image: url(img/locationnotfound.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: solid darkblue 0.5rem;
+
+  justify-content: center;
 }
 
 /* Animacion del buscador */
 
-::selection{
+::selection {
   color: #fff;
   background: #2a2a2c;
 }
-.search-box{
+.search-box {
   position: relative;
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  box-shadow: 5px 5px 30px rgba(0,0,0,.2);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.search-box.active{
+.search-box.active {
   width: 350px;
 }
-.search-box input{
+.search-box input {
   width: 100%;
   height: 100%;
   border: none;
@@ -81,13 +108,13 @@ img {
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.search-box input.active{
+.search-box input.active {
   opacity: 1;
 }
-.search-box input::placeholder{
+.search-box input::placeholder {
   color: #a6a6a6;
 }
-.search-box .searchButton{
+.search-box .searchButton {
   position: absolute;
   right: 0px;
   top: 50%;
@@ -99,22 +126,22 @@ img {
   text-align: center;
   line-height: 60px;
   font-size: 22px;
-  color: #664AFF;
+  color: #664aff;
   cursor: pointer;
   z-index: 1;
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.search-box .searchButton.active{
+.search-box .searchButton.active {
   right: 5px;
   height: 50px;
   line-height: 50px;
   width: 50px;
   font-size: 20px;
-  background: #664AFF;
+  background: #664aff;
   color: #fff;
   transform: translateY(-50%) rotate(360deg);
 }
-.search-box .cancel-icon{
+.search-box .cancel-icon {
   position: absolute;
   right: 20px;
   top: 50%;
@@ -124,7 +151,11 @@ img {
   cursor: pointer;
   transition: all 0.5s 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.search-box .cancel-icon.active{
+.search-box .cancel-icon.active {
   right: -40px;
   transform: translateY(-50%) rotate(360deg);
 }
+
+/* .hide {
+  display: none;
+} */

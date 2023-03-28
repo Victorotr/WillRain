@@ -81,7 +81,7 @@ buttonGeolocation.addEventListener("click", () => {
       );
 
       if (willRain) {
-        rainElement.textContent += " Si";
+        rainElement.textContent += " Yes";
       } else {
         rainElement.textContent += " No";
       }
@@ -134,7 +134,7 @@ buttonSearch.addEventListener("click", () => {
     );
 
     if (willRain) {
-      rainElement.textContent += " Si";
+      rainElement.textContent += " Yes";
     } else {
       rainElement.textContent += " No";
     }

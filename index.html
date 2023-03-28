@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -19,24 +19,32 @@
 
     <section class="panel location hide">
       <h2>Press for geolocation:</h2>
-      <button id="geolocation-button">
-        <i id="geolocation-icon" class="fa-solid fa-location-dot"></i>
-      </button>
+      <figure>
+        <img
+          id="geolocation-button"
+          src="img/icons8-google-maps.gif"
+          alt="Clicka para permitir el uso de tu ubicación"
+        />
+      </figure>
+      <!-- <i id="geolocation-icon" class="fa-solid fa-location-dot"></i> -->
     </section>
 
     <main class="container">
       <section class="panel main positive negative hide">
         <form name="search" class="search-box">
-          <input id="search-input" type="text" placeholder="Enter your location" />
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Enter your location"
+          />
           <button class="searchButton" id="search-button">
             <i class="fas fa-search"></i>
           </button>
           <!-- El div se tiene que cambiar -->
-          <div class="cancel-icon">  
+          <div class="cancel-icon">
             <i class="fas fa-times"></i>
           </div>
         </form>
-        
 
         <ul class="weather-box">
           <li class="description"></li>
@@ -49,10 +57,11 @@
 
       <section class="panel error hide">
         <p>No se ha detectado la ubicación</p>
+        <button>Vuelva a intentaerlo</button>
       </section>
     </main>
 
-    <script src="https://kit.fontawesome.com/7c8801c017.js"></script>
-     <script src="./index.js"></script> 
+    <!-- <script src="https://kit.fontawesome.com/7c8801c017.js"></script> -->
+    <script src="./index.js"></script>
   </body>
 </html>
