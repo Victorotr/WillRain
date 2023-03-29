@@ -20,21 +20,46 @@ header {
   width: 100vw;
 }
 
-.location,
-.main,
-.error {
+.panel {
   height: 100vh;
   width: 100vw;
-  display: grid;
-  place-content: center;
 }
 
 .location {
   background-image: url(img/bola-del-mundo.png);
   background-size: cover;
   font-size: 20px;
-  background-color: gray;
-  border: solid black 1rem;
+  display: grid;
+  place-content: center;
+  /* border: solid black 1rem; */
+}
+
+.error {
+  background-image: url(img/locationnotfound.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: grid;
+  place-content: center;
+}
+
+.main {
+  display: grid;
+  place-content: center;
+}
+ul {
+  list-style: none;
+}
+
+.weather-box {
+  font-size: 1.4rem;
+  list-style-type: none;
+  padding-top: 0.5rem;
+  display: grid;
+  place-content: center;
+}
+
+.weather-general {
+  display: flex;
 }
 
 h2 {
@@ -54,29 +79,25 @@ img {
   border-radius: 25%;
 }
 
-ul {
+/* ul {
   font-size: 1.4rem;
   list-style-type: none;
   padding-top: 0.5rem;
-}
+} */
 li {
   border: solid black 1.5px;
   padding: 1rem;
+  text-align: center;
 }
 
-.main.positive {
+.temperature {
+  font-size: 50px;
+}
+
+.main.rainy {
   background-image: url(img/rainyday.gif);
   background-size: cover;
-  border: solid white 0.5rem;
-}
-
-.error {
-  background-image: url(img/locationnotfound.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  border: solid darkblue 0.5rem;
-
-  justify-content: center;
+  /* border: solid white 0.5rem; */
 }
 
 /* Animacion del buscador */
@@ -156,6 +177,6 @@ li {
   transform: translateY(-50%) rotate(360deg);
 }
 
-/* .hide {
+.hide {
   display: none;
-} */
+}
