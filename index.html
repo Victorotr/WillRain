@@ -5,24 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>¿Lloverá?</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <header>
-      <img src="img/icons8-lluvia.gif" alt="¿Lloverá?" />
-    </header>
-
     <section class="panel location hide">
       <h2>Will it rain in your city in the next 8 hours?</h2>
       <figure>
         <img
           id="geolocation-button"
-          src="img/icons8-google-maps.gif"
+          src="img/icons8-location (1).gif"
           alt="Clicka para permitir el uso de tu ubicación"
         />
       </figure>
@@ -31,7 +23,7 @@
 
     <main class="container">
       <section class="panel main rainy clear hide">
-        <form name="search" class="search-box">
+        <form id="form" name="search" class="search-box">
           <input
             id="search-input"
             type="text"
@@ -50,13 +42,13 @@
         <ul class="weather-box">
           <li class="rain"></li>
           <li class="temperature"></li>
-          <li class="city"></li>
+          <li class="city hide"></li>
           <ul class="weather-general">
             <li class="humidity">🌧️</li>
             <li class="description"></li>
             <li class="wind-speed">🌬️</li>
           </ul>
-          <li class="forecast">Forecast 8 hours:</li>
+          <li class="forecast"></li>
         </ul>
       </section>
 

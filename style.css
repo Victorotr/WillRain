@@ -31,6 +31,7 @@ header {
   font-size: 20px;
   display: grid;
   place-content: center;
+  padding-bottom: 15rem;
   /* border: solid black 1rem; */
 }
 
@@ -46,6 +47,16 @@ header {
   display: grid;
   place-content: center;
 }
+
+.main.rainy {
+  background-image: url(img/rainyday.gif);
+  background-size: cover;
+}
+
+/* .main.clear {
+
+} */
+
 ul {
   list-style: none;
 }
@@ -79,28 +90,27 @@ img {
   border-radius: 25%;
 }
 
-/* ul {
-  font-size: 1.4rem;
-  list-style-type: none;
-  padding-top: 0.5rem;
-} */
 li {
-  border: solid black 1.5px;
   padding: 1rem;
   text-align: center;
+  /* border: solid black 1px; */
 }
+
+/* li.hidden {
+  border: none;
+} */
 
 .temperature {
   font-size: 50px;
 }
 
-.main.rainy {
-  background-image: url(img/rainyday.gif);
-  background-size: cover;
-  /* border: solid white 0.5rem; */
-}
+/* border: solid white 0.5rem; */
 
 /* Animacion del buscador */
+
+#form {
+  margin: 0 auto;
+}
 
 ::selection {
   color: #fff;
@@ -115,14 +125,14 @@ li {
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .search-box.active {
-  width: 350px;
+  width: 280px;
 }
 .search-box input {
   width: 100%;
   height: 100%;
   border: none;
   border-radius: 50px;
-  background: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
   outline: none;
   padding: 0 60px 0 20px;
   font-size: 18px;
@@ -142,12 +152,12 @@ li {
   transform: translateY(-50%);
   height: 60px;
   width: 60px;
-  background: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   text-align: center;
   line-height: 60px;
   font-size: 22px;
-  color: #664aff;
+  color: #000000;
   cursor: pointer;
   z-index: 1;
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -158,7 +168,7 @@ li {
   line-height: 50px;
   width: 50px;
   font-size: 20px;
-  background: #664aff;
+  background: #29292b;
   color: #fff;
   transform: translateY(-50%) rotate(360deg);
 }
@@ -168,13 +178,14 @@ li {
   top: 50%;
   transform: translateY(-50%);
   font-size: 25px;
-  color: #fff;
+  color: rgba(255, 255, 255, 0);
   cursor: pointer;
   transition: all 0.5s 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .search-box .cancel-icon.active {
   right: -40px;
   transform: translateY(-50%) rotate(360deg);
+  color: #000000;
 }
 
 .hide {

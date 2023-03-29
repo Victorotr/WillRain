@@ -19,6 +19,7 @@ const searchBox = document.querySelector(".search-box");
 const searchBtn = document.querySelector(".searchButton");
 const cancelBtn = document.querySelector(".cancel-icon");
 const searchInput = document.querySelector("input");
+const borderElement = document.querySelector(".hidden");
 
 // ApiKey
 
@@ -38,6 +39,12 @@ function showPanel(panel) {
 
 // Moistrar panel inicial
 showPanel(locationPanel);
+
+//Esconder cuadrícula
+// hiddenBorder () {
+//   borderElement.classList.add("hidden")
+// }
+
 // Animación del buscador
 
 searchBtn.onclick = () => {
@@ -53,13 +60,13 @@ cancelBtn.onclick = () => {
   searchInput.classList.remove("active");
   cancelBtn.classList.remove("active");
   searchInput.value = "";
-  rainElement.innerHTML = "Will rain?";
+  rainElement.innerHTML = "";
   cityElement.innerHTML = "";
   descriptionElement.innerHTML = "";
-  temperatureElement.innerHTML = "Temperature:";
-  humidityElement.innerHTML = "Humidity:";
-  windElement.innerHTML = "Wind Speed:";
-  forecastElement.innerHTML = "Forecast 8 hours:";
+  temperatureElement.innerHTML = "";
+  humidityElement.innerHTML = "";
+  windElement.innerHTML = "";
+  forecastElement.innerHTML = "";
 };
 //  Enter
 
@@ -94,7 +101,7 @@ buttonGeolocation.addEventListener("click", () => {
       if (willRain) {
         rainElement.textContent += " It will rain";
       } else {
-        rainElement.textContent += " It won't not rain";
+        rainElement.textContent += " It won't rain";
       }
 
       // for (const hourData of forecastData) {
@@ -112,8 +119,8 @@ buttonGeolocation.addEventListener("click", () => {
       cityElement.textContent += citySearch;
       descriptionElement.textContent += descrip;
       temperatureElement.textContent += ` ${temp} ºC`;
-      humidityElement.textContent += ` ${humidity} %`;
-      windElement.textContent += ` ${wind} km/h`;
+      humidityElement.textContent += `Humidity 💧 ${humidity} %`;
+      windElement.textContent += `Wind Speed 💨 ${wind} km/h`;
     }
     weather();
 
@@ -121,9 +128,9 @@ buttonGeolocation.addEventListener("click", () => {
     cityElement.innerHTML = "";
     descriptionElement.innerHTML = "";
     temperatureElement.innerHTML = "";
-    humidityElement.innerHTML = "🌧️";
-    windElement.innerHTML = "🌬️";
-    forecastElement.innerHTML = "Forecast 8 hours:";
+    humidityElement.innerHTML = "";
+    windElement.innerHTML = "";
+    forecastElement.innerHTML = "";
   });
 });
 
@@ -154,7 +161,7 @@ buttonSearch.addEventListener("click", () => {
     if (willRain) {
       rainElement.textContent += " It will rain";
     } else {
-      rainElement.textContent += " It won't not rain";
+      rainElement.textContent += " It won't rain";
     }
 
     // for (const hourData of forecastData) {
@@ -172,8 +179,8 @@ buttonSearch.addEventListener("click", () => {
     cityElement.textContent += citySearch;
     descriptionElement.textContent += descrip;
     temperatureElement.textContent += ` ${temp} ºC`;
-    humidityElement.textContent += ` ${humidity} %`;
-    windElement.textContent += ` ${wind} km/h`;
+    humidityElement.textContent += `Humidity 💧 ${humidity} %`;
+    windElement.textContent += `Wind Speed 💨 ${wind} km/h`;
   }
   weather();
 
@@ -181,7 +188,7 @@ buttonSearch.addEventListener("click", () => {
   cityElement.innerHTML = "";
   descriptionElement.innerHTML = "";
   temperatureElement.innerHTML = "";
-  humidityElement.innerHTML = "🌧️";
-  windElement.innerHTML = "🌬️";
-  forecastElement.innerHTML = "Forecast 8 hours:";
+  humidityElement.innerHTML = "";
+  windElement.innerHTML = "";
+  forecastElement.innerHTML = "";
 });
