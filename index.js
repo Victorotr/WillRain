@@ -92,9 +92,9 @@ buttonGeolocation.addEventListener("click", () => {
         (hourRain) => hourRain.weather.precip > 0
       );
       if (willRain) {
-        rainElement.textContent += " Yes Rainy";
+        rainElement.textContent += " It will rain";
       } else {
-        rainElement.textContent += " Not Rainy";
+        rainElement.textContent += " It won't not rain";
       }
 
       // for (const hourData of forecastData) {
@@ -152,9 +152,9 @@ buttonSearch.addEventListener("click", () => {
       (hourRain) => hourRain.weather.precip > 0
     );
     if (willRain) {
-      rainElement.textContent += " Yes";
+      rainElement.textContent += " It will rain";
     } else {
-      rainElement.textContent += " No";
+      rainElement.textContent += " It won't not rain";
     }
 
     // for (const hourData of forecastData) {
