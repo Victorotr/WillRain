@@ -1,6 +1,7 @@
 "use strict";
 
 // Selectores
+
 const formElement = document.forms.search;
 const buttonGeolocation = document.querySelector("#geolocation-button");
 const buttonSearch = document.querySelector("#search-button");
@@ -52,15 +53,18 @@ cancelBtn.onclick = () => {
   searchInput.classList.remove("active");
   cancelBtn.classList.remove("active");
   searchInput.value = "";
+  rainElement.innerHTML = "Will rain?";
+  cityElement.innerHTML = "";
+  descriptionElement.innerHTML = "";
+  temperatureElement.innerHTML = "Temperature:";
+  humidityElement.innerHTML = "Humidity:";
+  windElement.innerHTML = "Wind Speed:";
+  forecastElement.innerHTML = "Forecast 8 hours:";
 };
 
 //  Enter
 
-formElement.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const newSearchInput = formElement.elements.searchInput;
-  newSearchInput.value = "";
-});
+formElement.addEventListener("submit", (event) => event.preventDefault());
 
 // Button Geolocation
 
@@ -83,16 +87,16 @@ buttonGeolocation.addEventListener("click", () => {
       console.log(dataWeather);
 
       const forecastData = dataWeather.data.slice(0, 8);
-      for (const hourData of forecastData) {
-        const willRain = forecastData.some(
-          (hourRain) => hourRain.weather.precip > 0
-        );
-        if (willRain) {
-          rainElement.textContent += " Yes";
-        } else {
-          rainElement.textContent += " No";
-        }
+      const willRain = forecastData.some(
+        (hourRain) => hourRain.weather.precip > 0
+      );
+      if (willRain) {
+        rainElement.textContent += " Yes";
+      } else {
+        rainElement.textContent += " No";
+      }
 
+      for (const hourData of forecastData) {
         const hour = hourData.timestamp_local.substring(11, 16);
         const probRain = hourData.precip * 100;
         forecastElement.textContent += ` ${hour}. Prob: ${probRain} %`;
@@ -127,6 +131,7 @@ buttonGeolocation.addEventListener("click", () => {
 buttonSearch.addEventListener("click", () => {
   const city = document.querySelector("#search-input").value;
   const urlCity = `https://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&key=${APIKey}&hours=48`;
+
   async function getWeather() {
     try {
       let response = await fetch(urlCity);
@@ -142,16 +147,16 @@ buttonSearch.addEventListener("click", () => {
     console.log(dataWeather);
 
     const forecastData = dataWeather.data.slice(0, 8);
-    for (const hourData of forecastData) {
-      const willRain = forecastData.some(
-        (hourRain) => hourRain.weather.precip > 0
-      );
-      if (willRain) {
-        rainElement.textContent += " Yes";
-      } else {
-        rainElement.textContent += " No";
-      }
+    const willRain = forecastData.some(
+      (hourRain) => hourRain.weather.precip > 0
+    );
+    if (willRain) {
+      rainElement.textContent += " Yes";
+    } else {
+      rainElement.textContent += " No";
+    }
 
+    for (const hourData of forecastData) {
       const hour = hourData.timestamp_local.substring(11, 16);
       const probRain = hourData.precip * 100;
       forecastElement.textContent += ` ${hour}. Prob: ${probRain} %`;
@@ -165,8 +170,7 @@ buttonSearch.addEventListener("click", () => {
 
     cityElement.textContent += citySearch;
     descriptionElement.textContent += descrip;
-    temperatureElement.textContent += `${temp} ºC`;
-
+    temperatureElement.textContent += ` ${temp} ºC`;
     humidityElement.textContent += ` ${humidity} %`;
     windElement.textContent += ` ${wind} km/h`;
   }
