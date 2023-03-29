@@ -5,6 +5,7 @@ const formElement = document.forms.search;
 const buttonGeolocation = document.querySelector("#geolocation-button");
 const buttonSearch = document.querySelector("#search-button");
 const rainElement = document.querySelector(".rain");
+const cityElement = document.querySelector(".city");
 const descriptionElement = document.querySelector(".description");
 const temperatureElement = document.querySelector(".temperature");
 const humidityElement = document.querySelector(".humidity");
@@ -55,7 +56,11 @@ cancelBtn.onclick = () => {
 
 //  Enter
 
-formElement.addEventListener("submit", (event) => event.preventDefault());
+formElement.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const newSearchInput = formElement.elements.searchInput;
+  newSearchInput.value = "";
+});
 
 // Button Geolocation
 
@@ -101,8 +106,7 @@ buttonGeolocation.addEventListener("click", () => {
 
       cityElement.textContent += citySearch;
       descriptionElement.textContent += descrip;
-      temperatureElement.textContent += `${temp} ºC`;
-
+      temperatureElement.textContent += ` ${temp} ºC`;
       humidityElement.textContent += ` ${humidity} %`;
       windElement.textContent += ` ${wind} km/h`;
     }
