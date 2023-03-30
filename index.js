@@ -29,25 +29,16 @@ const borderElement = document.querySelector(".hidden");
 // Paneles
 
 // Esconder paneles
-
-function hideAllPanels(panel) {
+function hidePanels(panel) {
   panel.classList.add("hide");
 }
 
 // Mostrar panel especificado
-
 function showPanel(panel) {
   panel.classList.remove("hide");
 }
-
 // Mostrar panel inicial
-
 showPanel(locationPanel);
-
-//Esconder cuadrícula
-// hiddenBorder () {
-//   borderElement.classList.add("hidden")
-// }
 
 // Animaciones
 
@@ -65,14 +56,6 @@ cancelBtn.onclick = () => {
   searchBtn.classList.remove("active");
   searchInput.classList.remove("active");
   cancelBtn.classList.remove("active");
-  searchInput.value = "";
-  rainElement.innerHTML = "";
-  cityElement.innerHTML = "";
-  descriptionElement.innerHTML = "";
-  temperatureElement.innerHTML = "";
-  humidityElement.innerHTML = "";
-  windElement.innerHTML = "";
-  forecastElement.innerHTML = "";
 };
 
 // ApiKey
@@ -84,26 +67,32 @@ const APIKey = "4d75b6ca92494c43935844f1cb91dc89";
 const handleDataWeather = () => {
   navigator.geolocation.getCurrentPosition((position) => {
     const { latitude, longitude } = position.coords;
-    const urlGeolocation = `https://api.weatherbit.io/v2.0/forecast/hourly?lat=${latitude}&lon=${longitude}&key=${APIKey}&hours=48`;
+    const urlGeolocation = `https://api.wetherbit.io/v2.0/forecast/hourly?lat=${latitude}&lon=${longitude}&key=${APIKey}&hours=48`;
     const city = document.querySelector("#search-input").value;
     const urlCity = `https://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&key=${APIKey}&hours=48`;
     async function getWeather() {
+      let data;
+      let response;
       try {
         if (city !== "") {
-          let response = await fetch(urlCity);
-          let data = await response.json();
+          response = await fetch(urlCity);
+          data = await response.json();
           return data;
         } else {
-          let response = await fetch(urlGeolocation);
-          let data = await response.json();
+          response = await fetch(urlGeolocation);
+          data = await response.json();
           return data;
         }
       } catch (error) {
-        console.error("ERROR:", error);
+        if (data === undefined) {
+          hidePanels(locationPanel);
+          showPanel(errorPanel);
+        } else {
+          hidePanels(locationPanel);
+          showPanel(mainPanel);
+        }
       }
     }
-    hideAllPanels(locationPanel);
-    showPanel(mainPanel);
 
     async function weather() {
       const dataWeather = await getWeather();
@@ -126,13 +115,11 @@ const handleDataWeather = () => {
         forecastElement.append(newLiForecast);
       }
 
-      const citySearch = dataWeather.city_name;
       const descrip = dataWeather.data[0].weather.description;
       const temp = dataWeather.data[0].temp;
       const humidity = dataWeather.data[0].rh;
       const wind = dataWeather.data[0].wind_spd;
 
-      cityElement.textContent += citySearch;
       descriptionElement.textContent += descrip;
       temperatureElement.textContent += ` ${temp} ºC`;
       humidityElement.textContent += `Hum. 💧 ${humidity} %`;
@@ -141,7 +128,6 @@ const handleDataWeather = () => {
     weather();
 
     rainElement.innerHTML = "";
-    cityElement.innerHTML = "";
     descriptionElement.innerHTML = "";
     temperatureElement.innerHTML = "";
     humidityElement.innerHTML = "";
