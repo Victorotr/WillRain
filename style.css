@@ -102,19 +102,14 @@ img {
 li {
   padding: 0.5rem;
   text-align: center;
-  /* border: solid black 1px; */
 }
-
-/* li.hidden {
-  border: none;
-} */
 
 .temperature {
   font-size: 50px;
   padding: 1rem 0;
 }
 
-/* border: solid white 0.5rem; */
+/* Animaciones */
 
 /* Animacion del buscador */
 
@@ -126,8 +121,6 @@ li {
   display: grid;
   place-content: center;
 }
-
-/* Animaciones */
 
 ::selection {
   color: #fff;
