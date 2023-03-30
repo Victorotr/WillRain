@@ -46,20 +46,6 @@ showPanel(locationPanel);
 
 // Animación del buscador
 
-buttonSearch.onclick = () => {
-  searchBox.classList.add("active");
-  searchInput.classList.add("active");
-  cancelBtn.classList.add("active");
-  searchInput.focus();
-};
-
-cancelBtn.onclick = () => {
-  searchBox.classList.remove("active");
-  buttonSearch.classList.remove("active");
-  searchInput.classList.remove("active");
-  cancelBtn.classList.remove("active");
-};
-
 // ApiKey
 
 const APIKey = "4d75b6ca92494c43935844f1cb91dc89";
@@ -89,7 +75,6 @@ const handleDataWeather = () => {
         console.error("Error:", error.message);
       }
     }
-
     async function weather() {
       const dataWeather = await getWeather();
       console.log(dataWeather); // Acordarse de borrarlo
@@ -150,6 +135,21 @@ const handleDataWeather = () => {
     }
     weather();
 
+    buttonSearch.onclick = () => {
+      searchBox.classList.add("active");
+      searchInput.classList.add("active");
+      cancelBtn.classList.add("active");
+      searchInput.focus();
+    };
+
+    cancelBtn.onclick = () => {
+      searchBox.classList.remove("active");
+      buttonSearch.classList.remove("active");
+      searchInput.classList.remove("active");
+      cancelBtn.classList.remove("active");
+      searchInput.value = "";
+    };
+
     descriptionElement.innerHTML = "";
     cityElement.innerHTML = "";
     temperatureElement.innerHTML = "";
@@ -171,10 +171,6 @@ buttonGeolocation.addEventListener("click", () => {
 });
 
 // Button Search
-
-// if (buttonSearch.getElementsByClassName("active")) {
-//   buttonSearch.classList.remove("active");
-// }
 
 buttonSearch.addEventListener("click", () => {
   buttonSearch.classList.add("active");
