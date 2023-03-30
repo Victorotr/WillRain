@@ -102,21 +102,20 @@ const handleDataWeather = () => {
         showPanel(mainPanel);
       }
 
+      const dataMainEvent = dataWeather.data[0].weather.description;
+      console.log(dataMainEvent.toLowerCase().indexOf("rain"));
+      if (dataMainEvent.toLowerCase().indexOf("rain") === -1) {
+        mainPanel.classList.add("clearly");
+      } else {
+        mainPanel.classList.add("rainy");
+      }
+
       const forecastData = dataWeather.data.slice(0, 8);
       const willRain = forecastData.some((hourRain) => hourRain.pop > 0);
       if (willRain) {
         rainElement.textContent += " It will rain";
       } else {
         rainElement.textContent += " It won't rain";
-      }
-
-      let newLiForecast;
-      for (const hourData of forecastData) {
-        const hour = hourData.timestamp_local.substring(11, 16);
-        const probRain = Number.parseFloat(hourData.pop);
-        newLiForecast = document.createElement("li");
-        newLiForecast.textContent += ` ${hour}. Prob. Rain: ${probRain} %`;
-        forecastElement.append(newLiForecast);
       }
 
       const descrip = dataWeather.data[0].weather.description;
@@ -128,6 +127,15 @@ const handleDataWeather = () => {
       temperatureElement.textContent += ` ${temp} ºC`;
       humidityElement.textContent += `Hum. 💧 ${humidity} %`;
       windElement.textContent += `Wind 💨 ${wind} m/s`;
+      let newLiForecast;
+
+      for (const hourData of forecastData) {
+        const hour = hourData.timestamp_local.substring(11, 16);
+        const probRain = Number.parseFloat(hourData.pop);
+        newLiForecast = document.createElement("li");
+        newLiForecast.textContent += ` ${hour}. Prob. Rain: ${probRain} %`;
+        forecastElement.append(newLiForecast);
+      }
     }
     weather();
 

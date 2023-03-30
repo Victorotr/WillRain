@@ -54,15 +54,19 @@ header {
 
 /* Gif en función de weather */
 
-.main.rainy {
-  background-image: url(img/rainyday.gif);
+.rainy {
+  background-image: url(./img/rainyday.gif);
   background-size: cover;
 }
 
-.main.clear {
+.clearly {
   background-image: url(img/sol\ atardecer.gif);
   background-size: cover;
 }
+
+/* .main.clouds {
+
+} */
 
 /* Weather-box */
 
