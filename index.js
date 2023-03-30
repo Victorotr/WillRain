@@ -102,12 +102,21 @@ const handleDataWeather = () => {
         showPanel(mainPanel);
       }
 
-      const dataMainEvent = dataWeather.data[0].weather.description;
-      console.log(dataMainEvent.toLowerCase().indexOf("rain"));
-      if (dataMainEvent.toLowerCase().indexOf("rain") === -1) {
+      const descriptionData = dataWeather.data[0].weather.description;
+      const dataMainRain = descriptionData.toLowerCase().indexOf("rain");
+      const dataMainClearly = descriptionData.toLowerCase().indexOf("clear");
+      if (dataMainRain !== -1) {
+        mainPanel.classList.remove("clearly");
+        mainPanel.classList.remove("clouds");
+        mainPanel.classList.add("rainy");
+      } else if (dataMainClearly !== -1) {
+        mainPanel.classList.remove("rainy");
+        mainPanel.classList.remove("clouds");
         mainPanel.classList.add("clearly");
       } else {
-        mainPanel.classList.add("rainy");
+        mainPanel.classList.remove("rainy");
+        mainPanel.classList.remove("clearly");
+        mainPanel.classList.add("clouds");
       }
 
       const forecastData = dataWeather.data.slice(0, 8);
@@ -139,6 +148,7 @@ const handleDataWeather = () => {
     }
     weather();
 
+    // mainPanel.classList.remove("rainy");
     rainElement.innerHTML = "";
     descriptionElement.innerHTML = "";
     temperatureElement.innerHTML = "";
