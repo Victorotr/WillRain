@@ -135,8 +135,8 @@ const handleDataWeather = () => {
       cityElement.textContent += citySearch;
       descriptionElement.textContent += descrip;
       temperatureElement.textContent += ` ${temp} ºC`;
-      humidityElement.textContent += `Humidity 💧 ${humidity} %`;
-      windElement.textContent += `Wind Speed 💨 ${wind} m/s`;
+      humidityElement.textContent += `Hum. 💧 ${humidity} %`;
+      windElement.textContent += `Wind 💨 ${wind} m/s`;
     }
     weather();
 
