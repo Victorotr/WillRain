@@ -29,15 +29,18 @@ const borderElement = document.querySelector(".hidden");
 // Paneles
 
 // Esconder paneles
+
 function hidePanels(panel) {
   panel.classList.add("hide");
 }
 
 // Mostrar panel especificado
+
 function showPanel(panel) {
   panel.classList.remove("hide");
 }
 // Mostrar panel inicial
+
 showPanel(locationPanel);
 
 // Animaciones
@@ -67,7 +70,7 @@ const APIKey = "4d75b6ca92494c43935844f1cb91dc89";
 const handleDataWeather = () => {
   navigator.geolocation.getCurrentPosition((position) => {
     const { latitude, longitude } = position.coords;
-    const urlGeolocation = `https://api.wetherbit.io/v2.0/forecast/hourly?lat=${latitude}&lon=${longitude}&key=${APIKey}&hours=48`;
+    const urlGeolocation = `https://api.weatherbit.io/v2.0/forecast/hourly?lat=${latitude}&lon=${longitude}&key=${APIKey}&hours=48`;
     const city = document.querySelector("#search-input").value;
     const urlCity = `https://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&key=${APIKey}&hours=48`;
     async function getWeather() {
@@ -84,19 +87,20 @@ const handleDataWeather = () => {
           return data;
         }
       } catch (error) {
-        if (data === undefined) {
-          hidePanels(locationPanel);
-          showPanel(errorPanel);
-        } else {
-          hidePanels(locationPanel);
-          showPanel(mainPanel);
-        }
+        console.error("Error:", error.message);
       }
     }
 
     async function weather() {
       const dataWeather = await getWeather();
       console.log(dataWeather); // Acordarse de borrarlo
+      if (dataWeather === undefined) {
+        hidePanels(locationPanel);
+        showPanel(errorPanel);
+      } else {
+        hidePanels(locationPanel);
+        showPanel(mainPanel);
+      }
 
       const forecastData = dataWeather.data.slice(0, 8);
       const willRain = forecastData.some((hourRain) => hourRain.pop > 0);
