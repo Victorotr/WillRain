@@ -5,8 +5,8 @@
 // Para funciones
 
 const formElement = document.forms.search;
-const buttonGeolocation = document.querySelector("#geolocation-button");
-const buttonSearch = document.querySelector("#search-button");
+const buttonGeolocation = document.querySelector(".geolocation-button");
+const buttonSearch = document.querySelector(".search-button");
 const descriptionElement = document.querySelector(".description");
 const cityElement = document.querySelector(".city");
 const temperatureElement = document.querySelector(".temperature");
@@ -21,7 +21,6 @@ const locationPanel = document.querySelector(".location");
 const mainPanel = document.querySelector(".main");
 const errorPanel = document.querySelector(".error");
 const searchBox = document.querySelector(".search-box");
-const searchBtn = document.querySelector(".searchButton");
 const cancelBtn = document.querySelector(".cancel-icon");
 const searchInput = document.querySelector("input");
 const borderElement = document.querySelector(".hidden");
@@ -47,16 +46,16 @@ showPanel(locationPanel);
 
 // Animación del buscador
 
-searchBtn.onclick = () => {
+buttonSearch.onclick = () => {
   searchBox.classList.add("active");
-  searchBtn.classList.add("active");
   searchInput.classList.add("active");
   cancelBtn.classList.add("active");
   searchInput.focus();
 };
+
 cancelBtn.onclick = () => {
   searchBox.classList.remove("active");
-  searchBtn.classList.remove("active");
+  buttonSearch.classList.remove("active");
   searchInput.classList.remove("active");
   cancelBtn.classList.remove("active");
 };
@@ -77,12 +76,12 @@ const handleDataWeather = () => {
       let data;
       let response;
       try {
-        if (city !== "") {
-          response = await fetch(urlCity);
+        if (buttonSearch.classList.contains("active") === false) {
+          response = await fetch(urlGeolocation);
           data = await response.json();
           return data;
         } else {
-          response = await fetch(urlGeolocation);
+          response = await fetch(urlCity);
           data = await response.json();
           return data;
         }
@@ -173,12 +172,17 @@ buttonGeolocation.addEventListener("click", () => {
 
 // Button Search
 
+// if (buttonSearch.getElementsByClassName("active")) {
+//   buttonSearch.classList.remove("active");
+// }
+
 buttonSearch.addEventListener("click", () => {
+  buttonSearch.classList.add("active");
   handleDataWeather();
 });
 
 // Error Browser Consola ((Provisional))
 
-// if (typeof browser === "undefined") {
-//   var browser = chrome;
-// }
+if (typeof browser === "undefined") {
+  var browser = chrome;
+}

@@ -170,7 +170,7 @@ li {
 .search-box input::placeholder {
   color: #a6a6a6;
 }
-.search-box .searchButton {
+.search-box .search-button {
   position: absolute;
   right: 0px;
   top: 50%;
@@ -187,7 +187,7 @@ li {
   z-index: 1;
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.search-box .searchButton.active {
+.search-box .search-button.active {
   right: 5px;
   height: 50px;
   line-height: 50px;
