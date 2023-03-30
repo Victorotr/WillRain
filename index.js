@@ -26,9 +26,7 @@ const cancelBtn = document.querySelector(".cancel-icon");
 const searchInput = document.querySelector("input");
 const borderElement = document.querySelector(".hidden");
 
-// ApiKey
-
-const APIKey = "4d75b6ca92494c43935844f1cb91dc89";
+// Paneles
 
 // Esconder paneles
 
@@ -50,6 +48,8 @@ showPanel(locationPanel);
 // hiddenBorder () {
 //   borderElement.classList.add("hidden")
 // }
+
+// Animaciones
 
 // Animación del buscador
 
@@ -74,6 +74,10 @@ cancelBtn.onclick = () => {
   windElement.innerHTML = "";
   forecastElement.innerHTML = "";
 };
+
+// ApiKey
+
+const APIKey = "4d75b6ca92494c43935844f1cb91dc89";
 
 // Función manejadora
 
