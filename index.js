@@ -8,8 +8,8 @@ const formElement = document.forms.search;
 const buttonGeolocation = document.querySelector("#geolocation-button");
 const buttonSearch = document.querySelector("#search-button");
 const rainElement = document.querySelector(".rain");
-const cityElement = document.querySelector(".city");
 const descriptionElement = document.querySelector(".description");
+const cityElement = document.querySelector(".city");
 const temperatureElement = document.querySelector(".temperature");
 const humidityElement = document.querySelector(".humidity");
 const windElement = document.querySelector(".wind-speed");
@@ -128,11 +128,13 @@ const handleDataWeather = () => {
       }
 
       const descrip = dataWeather.data[0].weather.description;
+      const cities = dataWeather.city_name;
       const temp = dataWeather.data[0].temp;
       const humidity = dataWeather.data[0].rh;
       const wind = dataWeather.data[0].wind_spd;
 
       descriptionElement.textContent += descrip;
+      cityElement.textContent += cities;
       temperatureElement.textContent += ` ${temp} ºC`;
       humidityElement.textContent += `Hum. 💧 ${humidity} %`;
       windElement.textContent += `Wind 💨 ${wind} m/s`;
@@ -148,9 +150,9 @@ const handleDataWeather = () => {
     }
     weather();
 
-    // mainPanel.classList.remove("rainy");
     rainElement.innerHTML = "";
     descriptionElement.innerHTML = "";
+    cityElement.innerHTML = "";
     temperatureElement.innerHTML = "";
     humidityElement.innerHTML = "";
     windElement.innerHTML = "";

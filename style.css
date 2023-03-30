@@ -55,7 +55,7 @@ header {
 /* Gif en función de weather */
 
 .rainy {
-  background-image: url(./img/rainyday.gif);
+  background-image: url(img/rainyday.gif);
   background-size: cover;
 }
 
@@ -64,9 +64,10 @@ header {
   background-size: cover;
 }
 
-/* .main.clouds {
-
-} */
+.main.clouds {
+  background-image: url(img/clouds.png);
+  background-size: cover;
+}
 
 /* Weather-box */
 
@@ -109,9 +110,18 @@ li {
   text-align: center;
 }
 
+.city {
+  font-size: 50px;
+  padding-top: 1rem;
+}
+
 .temperature {
   font-size: 50px;
-  padding: 1rem 0;
+  padding-bottom: 1rem;
+}
+
+.weather-forecast {
+  font-size: 1rem;
 }
 
 /* Animaciones */
