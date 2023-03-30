@@ -7,12 +7,12 @@
 const formElement = document.forms.search;
 const buttonGeolocation = document.querySelector("#geolocation-button");
 const buttonSearch = document.querySelector("#search-button");
-const rainElement = document.querySelector(".rain");
 const descriptionElement = document.querySelector(".description");
 const cityElement = document.querySelector(".city");
 const temperatureElement = document.querySelector(".temperature");
 const humidityElement = document.querySelector(".humidity");
 const windElement = document.querySelector(".wind-speed");
+const rainElement = document.querySelector(".rain");
 const forecastElement = document.querySelector(".weather-forecast");
 const locationPanel = document.querySelector(".location");
 
@@ -120,12 +120,6 @@ const handleDataWeather = () => {
       }
 
       const forecastData = dataWeather.data.slice(0, 8);
-      const willRain = forecastData.some((hourRain) => hourRain.pop > 0);
-      if (willRain) {
-        rainElement.textContent += " It will rain";
-      } else {
-        rainElement.textContent += " It won't rain";
-      }
 
       const descrip = dataWeather.data[0].weather.description;
       const cities = dataWeather.city_name;
@@ -138,8 +132,15 @@ const handleDataWeather = () => {
       temperatureElement.textContent += ` ${temp} ºC`;
       humidityElement.textContent += `Hum. 💧 ${humidity} %`;
       windElement.textContent += `Wind 💨 ${wind} m/s`;
-      let newLiForecast;
 
+      const willRain = forecastData.some((hourRain) => hourRain.pop > 0);
+      if (willRain) {
+        rainElement.textContent += " It will rain";
+      } else {
+        rainElement.textContent += " It won't rain";
+      }
+
+      let newLiForecast;
       for (const hourData of forecastData) {
         const hour = hourData.timestamp_local.substring(11, 16);
         const probRain = Number.parseFloat(hourData.pop);
@@ -150,12 +151,12 @@ const handleDataWeather = () => {
     }
     weather();
 
-    rainElement.innerHTML = "";
     descriptionElement.innerHTML = "";
     cityElement.innerHTML = "";
     temperatureElement.innerHTML = "";
     humidityElement.innerHTML = "";
     windElement.innerHTML = "";
+    rainElement.innerHTML = "";
     forecastElement.innerHTML = "";
   });
 };
