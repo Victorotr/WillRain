@@ -2,6 +2,8 @@
 
 // Selectores
 
+// Para funciones
+
 const formElement = document.forms.search;
 const buttonGeolocation = document.querySelector("#geolocation-button");
 const buttonSearch = document.querySelector("#search-button");
@@ -11,8 +13,11 @@ const descriptionElement = document.querySelector(".description");
 const temperatureElement = document.querySelector(".temperature");
 const humidityElement = document.querySelector(".humidity");
 const windElement = document.querySelector(".wind-speed");
-const forecastElement = document.querySelector(".forecast");
+const forecastElement = document.querySelector(".weather-forecast");
 const locationPanel = document.querySelector(".location");
+
+// Para CSS
+
 const mainPanel = document.querySelector(".main");
 const errorPanel = document.querySelector(".error");
 const searchBox = document.querySelector(".search-box");
@@ -31,13 +36,14 @@ function hideAllPanels(panel) {
   panel.classList.add("hide");
 }
 
-// Mostrar panel expecificado
+// Mostrar panel especificado
 
 function showPanel(panel) {
   panel.classList.remove("hide");
 }
 
-// Moistrar panel inicial
+// Mostrar panel inicial
+
 showPanel(locationPanel);
 
 //Esconder cuadrícula
@@ -68,21 +74,26 @@ cancelBtn.onclick = () => {
   windElement.innerHTML = "";
   forecastElement.innerHTML = "";
 };
-//  Enter
 
-formElement.addEventListener("submit", (event) => event.preventDefault());
+// Función manejadora
 
-// Button Geolocation
-
-buttonGeolocation.addEventListener("click", () => {
+const handleDataWeather = () => {
   navigator.geolocation.getCurrentPosition((position) => {
     const { latitude, longitude } = position.coords;
     const urlGeolocation = `https://api.weatherbit.io/v2.0/forecast/hourly?lat=${latitude}&lon=${longitude}&key=${APIKey}&hours=48`;
+    const city = document.querySelector("#search-input").value;
+    const urlCity = `https://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&key=${APIKey}&hours=48`;
     async function getWeather() {
       try {
-        let response = await fetch(urlGeolocation);
-        let data = await response.json();
-        return data;
+        if (city !== "") {
+          let response = await fetch(urlCity);
+          let data = await response.json();
+          return data;
+        } else {
+          let response = await fetch(urlGeolocation);
+          let data = await response.json();
+          return data;
+        }
       } catch (error) {
         console.error("ERROR:", error);
       }
@@ -92,23 +103,24 @@ buttonGeolocation.addEventListener("click", () => {
 
     async function weather() {
       const dataWeather = await getWeather();
-      console.log(dataWeather);
+      console.log(dataWeather); // Acordarse de borrarlo
 
       const forecastData = dataWeather.data.slice(0, 8);
-      const willRain = forecastData.some(
-        (hourRain) => hourRain.weather.precip > 0
-      );
+      const willRain = forecastData.some((hourRain) => hourRain.pop > 0);
       if (willRain) {
         rainElement.textContent += " It will rain";
       } else {
         rainElement.textContent += " It won't rain";
       }
 
-      // for (const hourData of forecastData) {
-      //   const hour = hourData.timestamp_local.substring(11, 16);
-      //   const probRain = hourData.precip * 100;
-      //   forecastElement.textContent += ` ${hour}. Prob: ${probRain} %`;
-      // }
+      let newLiForecast;
+      for (const hourData of forecastData) {
+        const hour = hourData.timestamp_local.substring(11, 16);
+        const probRain = Number.parseFloat(hourData.pop);
+        newLiForecast = document.createElement("li");
+        newLiForecast.textContent += ` ${hour}. Prob. Rain: ${probRain} %`;
+        forecastElement.append(newLiForecast);
+      }
 
       const citySearch = dataWeather.city_name;
       const descrip = dataWeather.data[0].weather.description;
@@ -120,7 +132,7 @@ buttonGeolocation.addEventListener("click", () => {
       descriptionElement.textContent += descrip;
       temperatureElement.textContent += ` ${temp} ºC`;
       humidityElement.textContent += `Humidity 💧 ${humidity} %`;
-      windElement.textContent += `Wind Speed 💨 ${wind} km/h`;
+      windElement.textContent += `Wind Speed 💨 ${wind} m/s`;
     }
     weather();
 
@@ -132,63 +144,26 @@ buttonGeolocation.addEventListener("click", () => {
     windElement.innerHTML = "";
     forecastElement.innerHTML = "";
   });
+};
+
+//  Enter
+
+formElement.addEventListener("submit", (event) => event.preventDefault());
+
+// Button Geolocation
+
+buttonGeolocation.addEventListener("click", () => {
+  handleDataWeather();
 });
 
 // Button Search
 
 buttonSearch.addEventListener("click", () => {
-  const city = document.querySelector("#search-input").value;
-  const urlCity = `https://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&key=${APIKey}&hours=48`;
-
-  async function getWeather() {
-    try {
-      let response = await fetch(urlCity);
-      let data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("ERROR:", error);
-    }
-  }
-
-  async function weather() {
-    const dataWeather = await getWeather();
-    console.log(dataWeather);
-
-    const forecastData = dataWeather.data.slice(0, 8);
-    const willRain = forecastData.some(
-      (hourRain) => hourRain.weather.precip > 0
-    );
-    if (willRain) {
-      rainElement.textContent += " It will rain";
-    } else {
-      rainElement.textContent += " It won't rain";
-    }
-
-    // for (const hourData of forecastData) {
-    //   const hour = hourData.timestamp_local.substring(11, 16);
-    //   const probRain = hourData.precip * 100;
-    //   forecastElement.textContent += ` ${hour}. Prob: ${probRain} %`;
-    // }
-
-    const citySearch = dataWeather.city_name;
-    const descrip = dataWeather.data[0].weather.description;
-    const temp = dataWeather.data[0].temp;
-    const humidity = dataWeather.data[0].rh;
-    const wind = dataWeather.data[0].wind_spd;
-
-    cityElement.textContent += citySearch;
-    descriptionElement.textContent += descrip;
-    temperatureElement.textContent += ` ${temp} ºC`;
-    humidityElement.textContent += `Humidity 💧 ${humidity} %`;
-    windElement.textContent += `Wind Speed 💨 ${wind} km/h`;
-  }
-  weather();
-
-  rainElement.innerHTML = "";
-  cityElement.innerHTML = "";
-  descriptionElement.innerHTML = "";
-  temperatureElement.innerHTML = "";
-  humidityElement.innerHTML = "";
-  windElement.innerHTML = "";
-  forecastElement.innerHTML = "";
+  handleDataWeather();
 });
+
+// Error Browser Consola ((Provisional))
+
+if (typeof browser === "undefined") {
+  var browser = chrome;
+}

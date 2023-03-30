@@ -6,6 +6,8 @@
   box-sizing: border-box;
 }
 
+/* General */
+
 html {
   font-family: "Righteous", Arial, sans-serif;
 }
@@ -19,6 +21,8 @@ header {
   position: absolute;
   width: 100vw;
 }
+
+/* Paneles */
 
 .panel {
   height: 100vh;
@@ -48,6 +52,8 @@ header {
   place-content: center;
 }
 
+/* Gif en función de weather */
+
 .main.rainy {
   background-image: url(img/rainyday.gif);
   background-size: cover;
@@ -56,6 +62,8 @@ header {
 /* .main.clear {
 
 } */
+
+/* Weather-box */
 
 ul {
   list-style: none;
@@ -69,7 +77,7 @@ ul {
   place-content: center;
 }
 
-.weather-general {
+.weather-data {
   display: flex;
 }
 
@@ -111,6 +119,13 @@ li {
 #form {
   margin: 0 auto;
 }
+
+.weather-forecast {
+  display: grid;
+  place-content: center;
+}
+
+/* Animaciones */
 
 ::selection {
   color: #fff;
