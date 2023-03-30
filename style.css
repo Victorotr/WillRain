@@ -30,7 +30,7 @@ header {
 }
 
 .location {
-  background-image: url(img/bola-del-mundo.png);
+  background-image: url(img/gotas-ventana.jpg);
   background-size: cover;
   font-size: 20px;
   display: grid;
@@ -40,11 +40,25 @@ header {
 }
 
 .error {
-  background-image: url(img/locationnotfound.png);
+  /* background-image: url(img/locationnotfound.png);
   background-size: contain;
-  background-repeat: no-repeat;
-  display: grid;
-  place-content: center;
+  background-repeat: no-repeat; */
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  padding-bottom: 20rem; /* mediaquerie a partir de 400px de alto con 1rem para responsive */
+  gap: 1rem;
+}
+.img-error {
+  width: 23rem;
+}
+.button-error {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  box-shadow: 10px 5px 5px rgb(70, 70, 70);
 }
 
 .main {
@@ -60,7 +74,7 @@ header {
 }
 
 .clearly {
-  background-image: url(img/sol\ atardecer.gif);
+  background-image: url(img/Calor.jpg);
   background-size: cover;
 }
 
@@ -89,8 +103,10 @@ ul {
 }
 
 h2 {
+  text-align: center;
   margin-top: 6rem;
   color: rgb(0, 0, 0);
+  padding: 0 2rem;
 }
 
 figure {
@@ -98,7 +114,7 @@ figure {
   justify-content: center;
 }
 
-img {
+img.geolocation-button {
   margin-top: 3rem;
   width: 5rem;
   border: solid black;

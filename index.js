@@ -7,6 +7,7 @@
 const formElement = document.forms.search;
 const buttonGeolocation = document.querySelector(".geolocation-button");
 const buttonSearch = document.querySelector(".search-button");
+const buttonError = document.querySelector(".button-error");
 const descriptionElement = document.querySelector(".description");
 const cityElement = document.querySelector(".city");
 const temperatureElement = document.querySelector(".temperature");
@@ -148,6 +149,11 @@ const handleDataWeather = () => {
       searchInput.classList.remove("active");
       cancelBtn.classList.remove("active");
       searchInput.value = "";
+    };
+
+    buttonError.onclick = () => {
+      hidePanels(errorPanel);
+      showPanel(locationPanel);
     };
 
     descriptionElement.innerHTML = "";
