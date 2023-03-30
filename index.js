@@ -168,6 +168,6 @@ buttonSearch.addEventListener("click", () => {
 
 // Error Browser Consola ((Provisional))
 
-if (typeof browser === "undefined") {
-  var browser = chrome;
-}
+// if (typeof browser === "undefined") {
+//   var browser = chrome;
+// }
