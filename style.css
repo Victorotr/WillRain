@@ -267,6 +267,15 @@ li {
   display: none;
 }
 
+@media (max-height: 750px) {
+  .error {
+    padding: 1rem;
+  }
+  .img-error {
+    width: 15rem;
+  }
+}
+
 @media (max-height: 500px) {
   .city {
     font-size: 25px;
