@@ -12,10 +12,6 @@ html {
   font-family: "Righteous", Arial, sans-serif;
 }
 
-body {
-  height: 100vh;
-}
-
 /* Paneles */
 
 .accessible {
@@ -32,7 +28,6 @@ body {
   position: absolute;
   margin-top: 2rem;
   padding-right: 2rem;
-  /* Cambiar padding a 4 rem en mediaquery */
   width: 100vw;
   display: flex;
   justify-content: end;
@@ -45,7 +40,6 @@ body {
 
 .geolocation-again {
   font-size: 24px;
-  /* margin-left: 70vw; */
 }
 
 .panel {
@@ -63,14 +57,11 @@ body {
 }
 
 .error {
-  /* background-image: url(img/locationnotfound.png);
-  background-size: contain;
-  background-repeat: no-repeat; */
   display: flex;
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  padding-bottom: 20rem; /* mediaquerie a partir de 400px de alto con 1rem para responsive */
+  padding-bottom: 20rem;
   gap: 1rem;
 }
 
