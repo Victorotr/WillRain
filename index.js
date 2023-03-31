@@ -73,102 +73,112 @@ const APIKey = "4d75b6ca92494c43935844f1cb91dc89";
 // Función manejadora
 
 const handleDataWeather = () => {
-  navigator.geolocation.getCurrentPosition((position) => {
-    const { latitude, longitude } = position.coords;
-    const urlGeolocation = `https://api.weatherbit.io/v2.0/forecast/hourly?lat=${latitude}&lon=${longitude}&key=${APIKey}&hours=48`;
-    const city = document.querySelector("#search-input").value;
-    const urlCity = `https://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&key=${APIKey}&hours=48`;
-    async function getWeather() {
-      try {
-        let data;
-        let response;
-        if (buttonSearch.classList.contains("active") === false) {
-          response = await fetch(urlGeolocation);
-          data = await response.json();
-          return data;
-          // if (!response.ok) {
-          //   throw new Error="No se permite la geolocalización";
-          // } else {
-          // }
-        } else {
-          if (city !== "") {
-            response = await fetch(urlCity);
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const { latitude, longitude } = position.coords;
+      const urlGeolocation = `https://api.weatherbit.io/v2.0/forecast/hourly?lat=${latitude}&lon=${longitude}&key=${APIKey}&hours=48`;
+      const city = document.querySelector("#search-input").value;
+      const urlCity = `https://api.weatherbit.io/v2.0/forecast/hourly?city=${city}&key=${APIKey}&hours=48`;
+      async function getWeather() {
+        try {
+          let data;
+          let response;
+          if (buttonSearch.classList.contains("active") === false) {
+            response = await fetch(urlGeolocation);
             data = await response.json();
             return data;
+          } else {
+            if (city !== "") {
+              response = await fetch(urlCity);
+              data = await response.json();
+              return data;
+            }
           }
+        } catch (error) {
+          console.error("Error:", error.message);
         }
-      } catch (error) {
-        console.error("Error:", error.message);
       }
-    }
-    async function weather() {
-      const dataWeather = await getWeather();
-      // console.log(dataWeather); // Acordarse de borrarlo
+      async function weather() {
+        const dataWeather = await getWeather();
+        // console.log(dataWeather); // Acordarse de borrarlo
 
+        if (dataWeather === undefined) {
+          hidePanels(locationPanel);
+          showPanel(errorPanel);
+        } else {
+          hidePanels(locationPanel);
+          hidePanels(errorPanel);
+          showPanel(mainPanel);
+        }
+
+        try {
+          const descriptionData = dataWeather.data[0].weather.description;
+          const dataMainRain = descriptionData.toLowerCase().indexOf("rain");
+          const dataMainClearly = descriptionData
+            .toLowerCase()
+            .indexOf("clear");
+          if (dataMainRain !== -1) {
+            mainPanel.classList.remove("clearly");
+            mainPanel.classList.remove("clouds");
+            mainPanel.classList.add("rainy");
+          } else if (dataMainClearly !== -1) {
+            mainPanel.classList.remove("rainy");
+            mainPanel.classList.remove("clouds");
+            mainPanel.classList.add("clearly");
+          } else {
+            mainPanel.classList.remove("rainy");
+            mainPanel.classList.remove("clearly");
+            mainPanel.classList.add("clouds");
+          }
+
+          const descrip = dataWeather.data[0].weather.description;
+          const cities = dataWeather.city_name;
+          const temp = dataWeather.data[0].temp;
+          const humidity = dataWeather.data[0].rh;
+          const wind = dataWeather.data[0].wind_spd;
+
+          descriptionElement.textContent += descrip;
+          cityElement.textContent += cities;
+          temperatureElement.textContent += ` ${temp} ºC`;
+          humidityElement.textContent += `Hum. 💧 ${humidity} %`;
+          windElement.textContent += `Wind 💨 ${wind} m/s`;
+
+          const forecastData = dataWeather.data.slice(0, 8);
+          const willRain = forecastData.some((hourRain) => hourRain.pop > 0);
+          if (willRain) {
+            rainElement.textContent += " It will rain";
+          } else {
+            rainElement.textContent += " It won't rain";
+          }
+
+          let newLiForecast;
+          for (const hourData of forecastData) {
+            const hour = hourData.timestamp_local.substring(11, 16);
+            const probRain = Number.parseFloat(hourData.pop);
+            newLiForecast = document.createElement("li");
+            newLiForecast.textContent += ` ${hour}. Prob. Rain: ${probRain} %`;
+            forecastElement.append(newLiForecast);
+          }
+        } catch (error) {
+          console.log("Se inicia la animación del buscador");
+        }
+      }
+      weather();
+
+      buttonSearch.classList.remove("active");
+      descriptionElement.innerHTML = "";
+      cityElement.innerHTML = "";
+      temperatureElement.innerHTML = "";
+      humidityElement.innerHTML = "";
+      windElement.innerHTML = "";
+      rainElement.innerHTML = "";
+      forecastElement.innerHTML = "";
+    },
+    () => {
       hidePanels(locationPanel);
-      showPanel(mainPanel);
-
-      try {
-        const descriptionData = dataWeather.data[0].weather.description;
-        const dataMainRain = descriptionData.toLowerCase().indexOf("rain");
-        const dataMainClearly = descriptionData.toLowerCase().indexOf("clear");
-        if (dataMainRain !== -1) {
-          mainPanel.classList.remove("clearly");
-          mainPanel.classList.remove("clouds");
-          mainPanel.classList.add("rainy");
-        } else if (dataMainClearly !== -1) {
-          mainPanel.classList.remove("rainy");
-          mainPanel.classList.remove("clouds");
-          mainPanel.classList.add("clearly");
-        } else {
-          mainPanel.classList.remove("rainy");
-          mainPanel.classList.remove("clearly");
-          mainPanel.classList.add("clouds");
-        }
-
-        const descrip = dataWeather.data[0].weather.description;
-        const cities = dataWeather.city_name;
-        const temp = dataWeather.data[0].temp;
-        const humidity = dataWeather.data[0].rh;
-        const wind = dataWeather.data[0].wind_spd;
-
-        descriptionElement.textContent += descrip;
-        cityElement.textContent += cities;
-        temperatureElement.textContent += ` ${temp} ºC`;
-        humidityElement.textContent += `Hum. 💧 ${humidity} %`;
-        windElement.textContent += `Wind 💨 ${wind} m/s`;
-
-        const forecastData = dataWeather.data.slice(0, 8);
-        const willRain = forecastData.some((hourRain) => hourRain.pop > 0);
-        if (willRain) {
-          rainElement.textContent += " It will rain";
-        } else {
-          rainElement.textContent += " It won't rain";
-        }
-
-        let newLiForecast;
-        for (const hourData of forecastData) {
-          const hour = hourData.timestamp_local.substring(11, 16);
-          const probRain = Number.parseFloat(hourData.pop);
-          newLiForecast = document.createElement("li");
-          newLiForecast.textContent += ` ${hour}. Prob. Rain: ${probRain} %`;
-          forecastElement.append(newLiForecast);
-        }
-      } catch (error) {
-        console.log("Se inicia la animación del buscador");
-      }
+      showPanel(errorPanel);
     }
-    weather();
-
-    buttonSearch.classList.remove("active");
-    descriptionElement.innerHTML = "";
-    cityElement.innerHTML = "";
-    temperatureElement.innerHTML = "";
-    humidityElement.innerHTML = "";
-    windElement.innerHTML = "";
-    rainElement.innerHTML = "";
-    forecastElement.innerHTML = "";
-  });
+  );
 };
 
 //  Enter
@@ -178,7 +188,6 @@ formElement.addEventListener("submit", (event) => event.preventDefault());
 // Button Geolocation
 
 buttonGeolocation.addEventListener("click", () => {
-  console.log("click");
   tittleMain.innerHTML = "";
   handleDataWeather();
 });
