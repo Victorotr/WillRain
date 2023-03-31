@@ -122,6 +122,7 @@ ul {
 .weather-data {
   padding-bottom: 1rem;
   display: flex;
+  justify-content: center;
 }
 
 h2 {
@@ -164,17 +165,15 @@ li {
 
 .weather-forecast {
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* Animaciones */
 
 #form {
   margin: 0 auto;
-}
-
-.weather-forecast {
-  display: grid;
-  place-content: center;
 }
 
 ::selection {
