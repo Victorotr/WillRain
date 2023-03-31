@@ -19,16 +19,24 @@ body {
 /* Paneles */
 
 .accessible {
-  color: white;
+  color: black;
   border: none;
   border-radius: 5px;
   font-size: 32px;
   width: 32px;
   height: 32px;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.section-accessible {
   position: absolute;
-  margin-top: 5vh;
-  margin-left: 80vw;
+  margin-top: 2rem;
+  padding-right: 1rem;
+  /* Cambiar padding a 4 rem en mediaquery */
+  width: 100vw;
+  display: flex;
+  justify-content: end;
+  gap: 0.75rem;
 }
 
 .skip {
@@ -37,7 +45,7 @@ body {
 
 .geolocation-again {
   font-size: 24px;
-  margin-left: 70vw;
+  /* margin-left: 70vw; */
 }
 
 .panel {

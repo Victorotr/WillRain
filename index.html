@@ -11,10 +11,12 @@
   <body>
     <header>
       <section class="panel location hide">
-        <button class="accessible skip">
-          <i class="fas fa-search"></i>
-        </button>
-        <h2>Will it rain in your city in the next 8 hours?</h2>
+        <section class="section-accessible">
+          <button class="accessible skip">
+            <i class="fas fa-search"></i>
+          </button>
+        </section>
+        <h2>Please, click to get the weather in your location</h2>
         <figure>
           <img
             class="geolocation-button"
@@ -28,13 +30,15 @@
 
     <main class="container">
       <section class="panel main hide">
-        <h2>Will it rain in your city in the next 8 hours?</h2>
-        <button class="accessible return">
-          <i class="fas fa-times"></i>
-        </button>
-        <button class="accessible geolocation-again">
-          <i class="fa-solid fa-location-dot"></i>
-        </button>
+        <section class="section-accessible">
+          <button class="accessible geolocation-again">
+            <i class="fa-solid fa-location-dot"></i>
+          </button>
+          <button class="accessible return">
+            <i class="fas fa-times"></i>
+          </button>
+        </section>
+        <h2 class="title-main">Please, enter a location</h2>
         <form id="form" name="search" class="search-box">
           <input
             id="search-input"
