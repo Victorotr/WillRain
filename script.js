@@ -40,6 +40,7 @@ function hidePanels(panel) {
 function showPanel(panel) {
   panel.classList.remove("hide");
 }
+
 // Mostrar panel inicial
 
 showPanel(locationPanel);
@@ -102,7 +103,6 @@ const handleDataWeather = () => {
     async function weather() {
       try {
         const dataWeather = await getWeather();
-        // console.log(dataWeather); // Acordarse de borrarlo
         if (dataWeather !== undefined) {
           hidePanels(locationPanel);
           showPanel(mainPanel);
