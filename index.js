@@ -86,6 +86,10 @@ const handleDataWeather = () => {
           response = await fetch(urlGeolocation);
           data = await response.json();
           return data;
+          // if (!response.ok) {
+          //   throw new Error="No se permite la geolocalización";
+          // } else {
+          // }
         } else {
           if (city !== "") {
             response = await fetch(urlCity);
@@ -100,13 +104,10 @@ const handleDataWeather = () => {
     async function weather() {
       const dataWeather = await getWeather();
       // console.log(dataWeather); // Acordarse de borrarlo
-      if (dataWeather === undefined) {
-        hidePanels(locationPanel);
-        showPanel(errorPanel);
-      } else {
-        hidePanels(locationPanel);
-        showPanel(mainPanel);
-      }
+
+      hidePanels(locationPanel);
+      showPanel(mainPanel);
+
       try {
         const descriptionData = dataWeather.data[0].weather.description;
         const dataMainRain = descriptionData.toLowerCase().indexOf("rain");
@@ -125,8 +126,6 @@ const handleDataWeather = () => {
           mainPanel.classList.add("clouds");
         }
 
-        const forecastData = dataWeather.data.slice(0, 8);
-
         const descrip = dataWeather.data[0].weather.description;
         const cities = dataWeather.city_name;
         const temp = dataWeather.data[0].temp;
@@ -139,6 +138,7 @@ const handleDataWeather = () => {
         humidityElement.textContent += `Hum. 💧 ${humidity} %`;
         windElement.textContent += `Wind 💨 ${wind} m/s`;
 
+        const forecastData = dataWeather.data.slice(0, 8);
         const willRain = forecastData.some((hourRain) => hourRain.pop > 0);
         if (willRain) {
           rainElement.textContent += " It will rain";
