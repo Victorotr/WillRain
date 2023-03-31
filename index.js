@@ -45,7 +45,25 @@ showPanel(locationPanel);
 
 // Animaciones
 
-// Animación del buscador
+buttonSearch.onclick = () => {
+  searchBox.classList.add("active");
+  searchInput.classList.add("active");
+  cancelBtn.classList.add("active");
+  searchInput.focus();
+};
+
+cancelBtn.onclick = () => {
+  searchBox.classList.remove("active");
+  buttonSearch.classList.remove("active");
+  searchInput.classList.remove("active");
+  cancelBtn.classList.remove("active");
+  searchInput.value = "";
+};
+
+buttonError.onclick = () => {
+  hidePanels(errorPanel);
+  showPanel(locationPanel);
+};
 
 // ApiKey
 
@@ -67,10 +85,11 @@ const handleDataWeather = () => {
           response = await fetch(urlGeolocation);
           data = await response.json();
           return data;
-        } else {
+        } else if (buttonSearch.classList.contains("active") === true) {
           response = await fetch(urlCity);
           data = await response.json();
           return data;
+        } else {
         }
       } catch (error) {
         console.error("Error:", error.message);
@@ -78,7 +97,7 @@ const handleDataWeather = () => {
     }
     async function weather() {
       const dataWeather = await getWeather();
-      console.log(dataWeather); // Acordarse de borrarlo
+      // console.log(dataWeather); // Acordarse de borrarlo
       if (dataWeather === undefined) {
         hidePanels(locationPanel);
         showPanel(errorPanel);
@@ -136,26 +155,7 @@ const handleDataWeather = () => {
     }
     weather();
 
-    buttonSearch.onclick = () => {
-      searchBox.classList.add("active");
-      searchInput.classList.add("active");
-      cancelBtn.classList.add("active");
-      searchInput.focus();
-    };
-
-    cancelBtn.onclick = () => {
-      searchBox.classList.remove("active");
-      buttonSearch.classList.remove("active");
-      searchInput.classList.remove("active");
-      cancelBtn.classList.remove("active");
-      searchInput.value = "";
-    };
-
-    buttonError.onclick = () => {
-      hidePanels(errorPanel);
-      showPanel(locationPanel);
-    };
-
+    buttonSearch.classList.remove("active");
     descriptionElement.innerHTML = "";
     cityElement.innerHTML = "";
     temperatureElement.innerHTML = "";
@@ -183,8 +183,33 @@ buttonSearch.addEventListener("click", () => {
   handleDataWeather();
 });
 
-// Error Browser Consola ((Provisional))
+// Accesibilidad
 
-if (typeof browser === "undefined") {
-  var browser = chrome;
-}
+const skipGeolocation = document.querySelector(".skip");
+const returnGeolocation = document.querySelector(".return");
+const geolocationAgain = document.querySelector(".geolocation-again");
+
+skipGeolocation.addEventListener("click", () => {
+  mainPanel.classList.remove("rainy");
+  mainPanel.classList.remove("clearly");
+  mainPanel.classList.remove("clouds");
+  mainPanel.classList.add("default");
+  descriptionElement.innerHTML = "";
+  cityElement.innerHTML = "";
+  temperatureElement.innerHTML = "";
+  humidityElement.innerHTML = "";
+  windElement.innerHTML = "";
+  rainElement.innerHTML = "";
+  forecastElement.innerHTML = "";
+  hidePanels(locationPanel);
+  showPanel(mainPanel);
+});
+
+returnGeolocation.addEventListener("click", () => {
+  hidePanels(mainPanel);
+  showPanel(locationPanel);
+});
+
+geolocationAgain.addEventListener("click", () => {
+  handleDataWeather();
+});

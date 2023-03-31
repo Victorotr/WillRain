@@ -9,20 +9,32 @@
   </head>
 
   <body>
-    <section class="panel location hide">
-      <h2>Will it rain in your city in the next 8 hours?</h2>
-      <figure>
-        <img
-          class="geolocation-button"
-          src="img/icons8-google-maps.gif"
-          alt="Clicka para permitir el uso de tu ubicación"
-        />
-      </figure>
-      <!-- <i id="geolocation-icon" class="fa-solid fa-location-dot"></i> -->
-    </section>
+    <header>
+      <section class="panel location hide">
+        <button class="accessible skip">
+          <i class="fas fa-search"></i>
+        </button>
+        <h2>Will it rain in your city in the next 8 hours?</h2>
+        <figure>
+          <img
+            class="geolocation-button"
+            src="img/icons8-google-maps.gif"
+            alt="Clicka para permitir el uso de tu ubicación"
+          />
+        </figure>
+        <!-- <i id="geolocation-icon" class="fa-solid fa-location-dot"></i> -->
+      </section>
+    </header>
 
     <main class="container">
       <section class="panel main hide">
+        <h2>Will it rain in your city in the next 8 hours?</h2>
+        <button class="accessible return">
+          <i class="fas fa-times"></i>
+        </button>
+        <button class="accessible geolocation-again">
+          <i class="fa-solid fa-location-dot"></i>
+        </button>
         <form id="form" name="search" class="search-box">
           <input
             id="search-input"
