@@ -267,3 +267,41 @@ li {
 .hide {
   display: none;
 }
+
+@media (max-height: 500px) {
+  .city {
+    font-size: 25px;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+  }
+  .temperature {
+    font-size: 25px;
+    padding-bottom: 0.1rem;
+    padding-top: 0.1rem;
+  }
+  .weather-data {
+    font-size: 17px;
+    padding-bottom: 0.1rem;
+  }
+  .section-accessible {
+    margin-top: 0.2rem;
+  }
+  .title-main {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .weather-forecast,
+  .rain,
+  .weather-data {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .weather-forecast {
+    display: grid;
+    place-content: center;
+  }
+}
