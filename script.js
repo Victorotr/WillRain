@@ -96,6 +96,7 @@ const handleDataWeather = () => {
         }
       } catch (error) {
         hidePanels(locationPanel);
+        hidePanels(mainPanel);
         showPanel(errorPanel);
         console.error("Error:", error.message);
       }
