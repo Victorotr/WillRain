@@ -12,6 +12,16 @@ html {
   font-family: "Righteous", Arial, sans-serif;
 }
 
+/* pantalla de carga */
+
+body {
+  height: 100vh;
+  background-image: url(img/searching_for_location.gif);
+  background-image: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* Paneles */
 
 .accessible {
@@ -63,6 +73,7 @@ html {
   align-items: center;
   padding-bottom: 20rem;
   gap: 1rem;
+  background-color: white;
 }
 
 .img-error {
@@ -103,6 +114,7 @@ html {
 .main.clouds {
   background-image: url(img/clouds.png);
   background-size: cover;
+  color: black;
 }
 
 /* Weather-box */
