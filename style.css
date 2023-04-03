@@ -63,7 +63,6 @@ html {
   align-items: center;
   padding-bottom: 20rem;
   gap: 1rem;
-  background-color: white;
 }
 
 .img-error {
@@ -170,6 +169,9 @@ li {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  background-color: rgba(253, 253, 253, 0.2);
+  border-radius: 15px;
+  margin: 0 3rem;
 }
 
 /* Animaciones */
