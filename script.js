@@ -71,7 +71,6 @@ buttonError.onclick = () => {
 
 const APIKey = "4f302c25141b40e0a7601cabeabf4444";
 
-
 // Función manejadora
 
 const handleDataWeather = () => {
